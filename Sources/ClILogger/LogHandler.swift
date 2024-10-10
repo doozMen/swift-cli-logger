@@ -6,7 +6,8 @@ public final class LogHandler: Logging.LogHandler {
 
   public var metadata: Logging.Logger.Metadata
   public var logLevel: Logging.Logger.Level
-
+  public var alwaysShowSource: Bool = false
+  
   init() {
     self.metadata = .init()
     self.logLevel = .notice
@@ -33,9 +34,9 @@ public final class LogHandler: Logging.LogHandler {
         stdOut.write(metadata.description, noNewLine: noNewLine)
       }
     case .info, .trace, .notice:
-      stdOut.write(message, noNewLine: noNewLine)
+      stdOut.write(alwaysShowSource ? "[\(source)]  \(message)" : message, noNewLine: noNewLine)
     case .error, .critical, .warning:
-      stdErr.write(message, noNewLine: noNewLine)
+      stdErr.write(alwaysShowSource ? "[\(source)]  \(message)" : message, noNewLine: noNewLine)
     }
   }
 }
