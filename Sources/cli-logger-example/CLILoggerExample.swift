@@ -5,15 +5,11 @@ import Logging
 fileprivate let logger = Logger(label: "\(CLILoggerExample._commandName)")
 
 @main
-struct CLILoggerExample: ParsableCommand
+struct CLILoggerExample: AsyncParsableCommand
 {
-  
   @OptionGroup var options: LogLevelOptions
   
-  func run() throws {
-    LoggingSystem.bootstrap { label in
-      CLILogHandler(label: label, logLevel: options.logLevel.swiftLogging)
-    }
+  func run() async throws {
     
     logger.critical("\(CLILoggerExample._commandName) loglevel: \(options.logLevel)")
     

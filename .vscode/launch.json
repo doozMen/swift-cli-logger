@@ -3,7 +3,7 @@
     {
       "type": "lldb",
       "request": "launch",
-      "args": [],
+      "args": ["--log-level", "debug"],
       "cwd": "${workspaceFolder:swift-cli-logger}",
       "name": "Debug cli-example",
       "program": "${workspaceFolder:swift-cli-logger}/.build/debug/cli-example",
@@ -17,6 +17,24 @@
       "name": "Release cli-example",
       "program": "${workspaceFolder:swift-cli-logger}/.build/release/cli-example",
       "preLaunchTask": "swift: Build Release cli-example"
+    },
+    {
+      "type": "lldb",
+      "request": "launch",
+      "args": [],
+      "cwd": "${workspaceFolder:swift-cli-logger}",
+      "name": "Debug cli-logger-example",
+      "program": "${workspaceFolder:swift-cli-logger}/.build/debug/cli-logger-example",
+      "preLaunchTask": "swift: Build Debug cli-logger-example"
+    },
+    {
+      "type": "lldb",
+      "request": "launch",
+      "args": [],
+      "cwd": "${workspaceFolder:swift-cli-logger}",
+      "name": "Release cli-logger-example",
+      "program": "${workspaceFolder:swift-cli-logger}/.build/release/cli-logger-example",
+      "preLaunchTask": "swift: Build Release cli-logger-example"
     }
   ]
 }
