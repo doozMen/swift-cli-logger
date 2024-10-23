@@ -2,7 +2,7 @@ import CLILogger
 import ArgumentParser
 import Logging
 
-let logger = Logger(label: "CliExample")
+fileprivate let logger = Logger(label: "\(CLILoggerExample._commandName)")
 
 @main
 struct CLILoggerExample: ParsableCommand
@@ -12,7 +12,7 @@ struct CLILoggerExample: ParsableCommand
   
   func run() throws {
     LoggingSystem.bootstrap { label in
-      CLILogHandler(logLevel: options.logLevel.swiftLogging)
+      CLILogHandler(label: label, logLevel: options.logLevel.swiftLogging)
     }
     
     logger.critical("\(CLILoggerExample._commandName) loglevel: \(options.logLevel)")

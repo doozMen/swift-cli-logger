@@ -5,10 +5,12 @@ public struct CLILogHandler: Logging.LogHandler, Sendable {
   public var metadata: Logging.Logger.Metadata
   public var logLevel: Logging.Logger.Level
   public let alwaysShowSource: Bool = false
+  public let label: String
   
-  public init(metadata: Logging.Logger.Metadata = [:], logLevel: Logging.Logger.Level) {
+  public init(label: String, metadata: Logging.Logger.Metadata = [:], logLevel: Logging.Logger.Level) {
     self.metadata = metadata
     self.logLevel = logLevel
+    self.label = label
   }
 
   public subscript(metadataKey key: String) -> Logging.Logger.Metadata.Value? {
@@ -24,6 +26,8 @@ public struct CLILogHandler: Logging.LogHandler, Sendable {
     level: Logger.Level, message: Logger.Message, metadata: Logger.Metadata?, source: String, file: String, function: String, line: UInt
   ) {
     let noNewLine = metadata?["overwrite"] != nil
+    let message = "[\(label)] - \(message)"
+    
     switch self.logLevel {
     case .debug:
       stdOut.write("[\(source)]  \(file) \(function)\(line)")
