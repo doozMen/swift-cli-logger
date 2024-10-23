@@ -3,7 +3,7 @@
 
 import PackageDescription
 
-let lib = "ClILogger"
+let lib = "CLILogger"
 
 let package = Package(
   name: "swift-cli-logger",
@@ -14,7 +14,7 @@ let package = Package(
     .package(url: "https://github.com/apple/swift-argument-parser.git", from: "1.5.0"),
   ],
   targets: [
-    .executableTarget(name: "cli-example", dependencies: [.target(name: lib)]),
+    .executableTarget(name: "cli-logger-example", dependencies: [.target(name: lib)]),
     .target(
       name: lib,
       dependencies: [

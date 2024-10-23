@@ -10,10 +10,6 @@ public struct LogLevelOptions: ParsableCommand {
   public init(logLevel: Level) {
     self.logLevel = logLevel
   }
-  
-  public func validate() throws {
-    LogHandler.shared.logLevel = logLevel.swiftLogging
-  }
 }
 
 public enum Level: String, Codable, CaseIterable, ExpressibleByArgument, Sendable {

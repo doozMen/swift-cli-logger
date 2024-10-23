@@ -5,7 +5,7 @@ Utility to pass log level options into swift argument parser. It adds a very bas
 Basic useage in cli-example.
 
 ```swift
-import ClILogger
+import CLILogger
 import ArgumentParser
 import Logging
 

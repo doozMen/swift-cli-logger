@@ -1,16 +1,14 @@
 import Foundation
 import Logging
 
-public final class LogHandler: Logging.LogHandler {
-  public static let shared = LogHandler()
-
+public struct CLILogHandler: Logging.LogHandler, Sendable {
   public var metadata: Logging.Logger.Metadata
   public var logLevel: Logging.Logger.Level
-  public var alwaysShowSource: Bool = false
+  public let alwaysShowSource: Bool = false
   
-  init() {
-    self.metadata = .init()
-    self.logLevel = .notice
+  public init(metadata: Logging.Logger.Metadata = [:], logLevel: Logging.Logger.Level) {
+    self.metadata = metadata
+    self.logLevel = logLevel
   }
 
   public subscript(metadataKey key: String) -> Logging.Logger.Metadata.Value? {
@@ -50,7 +48,9 @@ private final class StandardErrorOutputStream {
   }
 
   func write(_ message: Logger.Message, noNewLine: Bool = false) {
-    guard let data = (message.description + (noNewLine ? "" : "\n")).data(using: .utf8) else { return }
+    guard let data = (message.description + (noNewLine ? "" : "\n")).data(using: .utf8) else {
+      return
+    }
     FileHandle.standardError.write(data)
   }
 }
@@ -61,7 +61,9 @@ private final class StandardOutputStream {
   }
 
   func write(_ message: Logger.Message, noNewLine: Bool = false) {
-    guard let data = (message.description + (noNewLine ? "" : "\n")).data(using: .utf8) else { return }
+    guard let data = (message.description + (noNewLine ? "" : "\n")).data(using: .utf8) else {
+      return
+    }
     FileHandle.standardOutput.write(data)
   }
 }
