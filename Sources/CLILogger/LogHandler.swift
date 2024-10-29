@@ -46,7 +46,7 @@ public struct CLILogHandler: Logging.LogHandler, Sendable {
 private let stdOut = StandardOutputStream()
 private let stdErr = StandardErrorOutputStream()
 
-private final class StandardErrorOutputStream {
+private struct StandardErrorOutputStream {
   func write(_ string: String, noNewLine: Bool = false) {
     self.write(Logger.Message(stringLiteral: string))
   }
@@ -59,7 +59,7 @@ private final class StandardErrorOutputStream {
   }
 }
 
-private final class StandardOutputStream {
+private struct StandardOutputStream {
   func write(_ string: String, noNewLine: Bool = false) {
     self.write(Logger.Message(stringLiteral: string))
   }

@@ -1,7 +1,7 @@
 import ArgumentParser
 import Logging
 
-public struct LogLevelOptions: ParsableCommand {
+public struct LogLevelOptions: ParsableCommand, Sendable {
   @Option(help: "[\(Level.allCases.map{ $0.rawValue }.joined(separator: ","))]")
   public private(set) var logLevel: Level = LevelTaskLocal.level
 
